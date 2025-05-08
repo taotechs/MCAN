@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MCAN Lagos{% endblock %}</title>
+    <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='images/mcanlogo.jpg') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mcan-green': '#1B4332',
+                        'mcan-light-green': '#2D6A4F',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            transition: all 0.3s ease;
+        }
+        
+        #backToTop.show {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-mcan-green shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="flex items-center space-x-3">
+                            <img src="{{ url_for('static', filename='images/mcanlogo.jpg') }}" alt="MCAN Logo" class="h-10 w-10 rounded-full object-cover">
+                            <span class="text-white text-xl font-bold">MCAN Lagos</span>
+                        </a>
+                    </div>
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="/" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="/about" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="/events" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Events</a>
+                        <a href="/news" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">News</a>
+                        <a href="/projects" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <div class="relative dropdown">
+                            <button class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                                More
+                                <i class="fas fa-chevron-down ml-1"></i>
+                            </button>
+                            <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
+                                <div class="py-1">
+                                    <a href="/executives" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Executives</a>
+                                    <a href="/teams" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Teams</a>
+                                    <a href="/camp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Camp</a>
+                                    <a href="/lodges" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lodges</a>
+                                    <a href="/education" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Education</a>
+                                    <a href="/gallery" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Gallery</a>
+                                    <a href="/contact" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
+                                    <a href="/donate" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Donate</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-white hover:text-green-100 hover:bg-mcan-light-green focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Auth Buttons -->
+                <div class="hidden md:flex items-center">
+                    {% if current_user.is_authenticated %}
+                        <div class="flex items-center space-x-4">
+                            <a href="/members/profile" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Profile</a>
+                            <a href="/members/directory" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Directory</a>
+                            {% if current_user.is_admin %}
+                                <a href="/admin/dashboard" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Admin</a>
+                            {% endif %}
+                            <a href="/auth/logout" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Logout</a>
+                        </div>
+                    {% else %}
+                        <div class="flex items-center space-x-4">
+                            <a href="/auth/login" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                            <a href="/auth/register" class="bg-white text-mcan-green hover:bg-green-50 px-4 py-2 rounded-md text-sm font-medium">Register</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/about" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/events" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Events</a>
+                <a href="/news" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">News</a>
+                <a href="/projects" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="/executives" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Executives</a>
+                <a href="/teams" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Teams</a>
+                <a href="/camp" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Camp</a>
+                <a href="/lodges" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Lodges</a>
+                <a href="/education" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Education</a>
+                <a href="/gallery" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="/contact" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <a href="/donate" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Donate</a>
+                
+                {% if current_user.is_authenticated %}
+                    <a href="/members/profile" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Profile</a>
+                    <a href="/members/directory" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Directory</a>
+                    {% if current_user.is_admin %}
+                        <a href="/admin/dashboard" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Admin</a>
+                    {% endif %}
+                    <a href="/auth/logout" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Logout</a>
+                {% else %}
+                    <a href="/auth/login" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Login</a>
+                    <a href="/auth/register" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="max-w-7xl mx-auto px-4 mt-4">
+                    <div class="rounded-md p-4 {% if category == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Featured Projects -->
+    <div class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Featured Projects
+                </h2>
+                <p class="mt-4 text-lg text-gray-500">
+                    Discover our ongoing and completed projects.
+                </p>
+            </div>
+
+            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- NYSC Orientation Camps -->
+                <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+                    <img class="w-full h-48 object-cover" src="{{ url_for('static', filename='images/mcanlogo.jpg') }}" alt="NYSC Orientation Camps">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">NYSC Orientation Camps</h3>
+                        <p class="mt-2 text-sm text-gray-500">Ensuring the proper Islamic welfare and spiritual development of Muslim corps members during their orientation camp period.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                Ongoing
+                            </span>
+                            <a href="/projects" class="text-mcan-green hover:text-mcan-light-green font-medium">Learn more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Online Qur'an Madrasah -->
+                <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+                    <img class="w-full h-48 object-cover" src="{{ url_for('static', filename='images/onlinemadrasah.jpg') }}" alt="Online Qur'an Madrasah">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Online Qur'an Madrasah</h3>
+                        <p class="mt-2 text-sm text-gray-500">A flexible and impactful weekend learning experience designed for Muslim youth, corps members, and busy individuals.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                Ongoing
+                            </span>
+                            <a href="/projects" class="text-mcan-green hover:text-mcan-light-green font-medium">Learn more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Center -->
+                <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+                    <img class="w-full h-48 object-cover" src="{{ url_for('static', filename='images/mcanlogo.jpg') }}" alt="Education Center">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Education Center</h3>
+                        <p class="mt-2 text-sm text-gray-500">Providing quality Islamic and secular education to our community through a comprehensive learning environment.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                Ongoing
+                            </span>
+                            <a href="/projects" class="text-mcan-green hover:text-mcan-light-green font-medium">Learn more →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="/projects" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-mcan-green hover:bg-mcan-light-green transition-colors duration-300">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="bg-mcan-green text-white p-3 rounded-full shadow-lg hover:bg-mcan-light-green transition-colors duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="{{ url_for('static', filename='images/mcanlogo.jpg') }}" alt="MCAN Logo" class="h-12 w-12 rounded-full object-cover">
+                        <h3 class="text-lg font-semibold">MCAN Lagos</h3>
+                    </div>
+                    <p class="text-gray-400">Empowering corps members in Lagos State through community service and professional development.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/about" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="/events" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="/news" class="text-gray-400 hover:text-white">News</a></li>
+                        <li><a href="/projects" class="text-gray-400 hover:text-white">Projects</a></li>
+                        <li><a href="/executives" class="text-gray-400 hover:text-white">Executives</a></li>
+                        <li><a href="/teams" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="/camp" class="text-gray-400 hover:text-white">Camp</a></li>
+                        <li><a href="/lodges" class="text-gray-400 hover:text-white">Lodges</a></li>
+                        <li><a href="/education" class="text-gray-400 hover:text-white">Education</a></li>
+                        <li><a href="/gallery" class="text-gray-400 hover:text-white">Gallery</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="/donate" class="text-gray-400 hover:text-white">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i> info@mcanlagos.org</li>
+                        <li><i class="fas fa-phone mr-2"></i> +234 123 456 7890</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; {{ now.year if now else 2024 }} MCAN Lagos. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Script -->
+    <script>
+        // Show/hide back to top button based on scroll position
+        window.onscroll = function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        };
+
+        // Smooth scroll to top when button is clicked
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <!-- Mobile menu toggle -->
+    <script>
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html> 

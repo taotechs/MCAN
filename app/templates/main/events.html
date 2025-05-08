@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Events - MCAN Lagos{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative bg-mcan-green">
+    <div class="absolute inset-0">
+        <img class="w-full h-full object-cover opacity-20" src="https://placehold.co/1920x1080/1B4332/FFFFFF?text=MCAN+Lagos+Events" alt="MCAN Lagos Events">
+    </div>
+    <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Upcoming Events</h1>
+        <p class="mt-6 text-xl text-white max-w-3xl">Join us at our upcoming events and activities. Stay connected with the MCAN Lagos community.</p>
+    </div>
+</div>
+
+<!-- Events List -->
+<div class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if events %}
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {% for event in events %}
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="relative h-48">
+                        <img class="w-full h-full object-cover" src="{{ event.image_url or 'https://placehold.co/600x400/1B4332/FFFFFF?text=Event' }}" alt="{{ event.title }}">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">{{ event.title }}</h3>
+                        <p class="mt-2 text-sm text-gray-500">{{ event.description }}</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar text-mcan-green mr-2"></i>
+                                <span class="text-sm text-gray-500">{{ event.date.strftime('%B %d, %Y') }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-mcan-green mr-2"></i>
+                                <span class="text-sm text-gray-500">{{ event.location }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-12">
+                <h3 class="text-lg font-medium text-gray-900">No upcoming events</h3>
+                <p class="mt-2 text-sm text-gray-500">Check back later for new events and activities.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-mcan-green">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+        <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <span class="block">Want to stay updated?</span>
+            <span class="block text-green-200">Join our mailing list.</span>
+        </h2>
+        <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div class="inline-flex rounded-md shadow">
+                <a href="/contact" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-mcan-green bg-white hover:bg-green-50">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

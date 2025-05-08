@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - MCAN Lagos{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative bg-mcan-green">
+    <div class="absolute inset-0">
+        <img class="w-full h-full object-cover opacity-20" src="{{ url_for('static', filename='images/hero-image.jpg') }}" alt="MCAN Lagos Projects">
+    </div>
+    <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Our Projects</h1>
+        <p class="mt-6 text-xl text-white max-w-3xl">Discover our initiatives and programs that make a difference in our community.</p>
+    </div>
+</div>
+
+<!-- Projects Grid -->
+<div class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 md:grid-cols-2">
+            <!-- Education Center -->
+            <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+                <img src="{{ url_for('static', filename='images/mcanlogo.jpg') }}" alt="Education Center" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-mcan-green mb-4">Education Center</h3>
+                    <p class="text-gray-600 mb-4">Providing quality Islamic and secular education to our community through a comprehensive learning environment.</p>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-mcan-green mb-2">Features:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Islamic studies curriculum</li>
+                            <li>Modern educational facilities</li>
+                            <li>Qualified teaching staff</li>
+                            <li>Holistic learning approach</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a href="/contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-mcan-green hover:bg-mcan-light-green transition-colors duration-300">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Online Qur'an Madrasah -->
+            <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+                <img src="{{ url_for('static', filename='images/onlinemadrasah.jpg') }}" alt="Online Qur'an Madrasah" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-mcan-green mb-4">Online Qur'an Madrasah</h3>
+                    <p class="text-gray-600 mb-4">A flexible and impactful weekend learning experience designed for Muslim youth, corps members, and busy individuals who desire a stronger connection with the Qur'an.</p>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-mcan-green mb-2">Highlights:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Structured weekend sessions</li>
+                            <li>Interactive online learning</li>
+                            <li>Qualified, experienced tutors</li>
+                            <li>A supportive Muslim learning community</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-mcan-green mb-2">Class Schedule:</h4>
+                        <div class="text-gray-600">
+                            <p class="font-medium">Days: Saturdays & Sundays</p>
+                            <p>Morning: 11:00 AM – 12:30 PM</p>
+                            <p>Afternoon: 2:00 PM – 3:30 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <p class="text-gray-600">Monthly Commitment Fee: <span class="font-bold">₦2,000 only</span></p>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a href="https://wa.link/qf1to2" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-mcan-green hover:bg-mcan-light-green transition-colors duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            Join Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NYSC Orientation Camps Project -->
+            <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+                <img src="{{ url_for('static', filename='images/mcanlogo.jpg') }}" alt="NYSC Orientation Camps" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-mcan-green mb-4">NYSC Orientation Camps</h3>
+                    <p class="text-gray-600 mb-4">Ensuring the proper Islamic welfare and spiritual development of Muslim corps members during their orientation camp period.</p>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-mcan-green mb-2">Action Steps:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Coordinate daily solah and provide Islamic educational materials</li>
+                            <li>Organize weekly Jumu'ah prayers with complete logistics</li>
+                            <li>Host Paradise Day (final Sunday) with lectures and Islamic bonding</li>
+                            <li>Provide medical and welfare support for Muslim corps members</li>
+                            <li>Establish Camp Islamic Help Desk for counseling and support</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-mcan-green mb-2">Services Provided:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Daily prayer coordination</li>
+                            <li>Islamic educational materials</li>
+                            <li>Weekly Jumu'ah arrangements</li>
+                            <li>Free prayer kits distribution</li>
+                            <li>Counseling and guidance</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a href="/contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-mcan-green hover:bg-mcan-light-green transition-colors duration-300">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MCAN Lagos Da'wah Bus -->
+            <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+                <img src="{{ url_for('static', filename='images/mcanbus.png') }}" alt="MCAN Lagos Da'wah Bus" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-mcan-green mb-4">MCAN Lagos Da'wah Bus</h3>
+                    <p class="text-gray-600 mb-4">To facilitate easy movement for Da'wah activities and support Muslim corps members across the state.</p>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-mcan-green mb-2">Action Plan:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Fundraising Drive: Engage philanthropists, Islamic organizations, and crowdfunding platforms</li>
+                            <li>Sponsorship Deals: Partner with Islamic businesses for branding opportunities on the bus in exchange for funding</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a href="/donate" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-mcan-green hover:bg-mcan-light-green transition-colors duration-300">
+                            <i class="fas fa-donate mr-2"></i>
+                            Support This Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-mcan-green">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+        <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <span class="block">Want to get involved?</span>
+            <span class="block text-green-200">Join our projects and make a difference.</span>
+        </h2>
+        <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div class="inline-flex rounded-md shadow">
+                <a href="/contact" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-mcan-green bg-white hover:bg-green-50">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
