@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Navigation -->
@@ -184,6 +185,8 @@
                             <!-- Footer -->
                             <div class="mt-1 pt-1 border-t border-gray-200 text-center">
                                 <p class="text-xs text-gray-500">This is an official digital identity card of MCAN Lagos</p>
+                                <!-- QR Code -->
+                                <div id="qrCode" class="absolute bottom-2 right-2 w-16 h-16"></div>
                             </div>
                         </div>
                     </div>
@@ -263,9 +266,36 @@
                 e.preventDefault();
                 
                 // Update preview with form data
-                previewName.textContent = document.getElementById('name').value;
-                previewStateCode.textContent = document.getElementById('stateCode').value;
-                previewPost.textContent = document.getElementById('post').value;
+                const name = document.getElementById('name').value;
+                const stateCode = document.getElementById('stateCode').value;
+                const post = document.getElementById('post').value;
+                
+                previewName.textContent = name;
+                previewStateCode.textContent = stateCode;
+                previewPost.textContent = post;
+                
+                // Generate QR Code with member information
+                const qrData = JSON.stringify({
+                    name: name,
+                    stateCode: stateCode,
+                    post: post,
+                    branch: 'Lagos',
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Clear previous QR code if any
+                const qrContainer = document.getElementById('qrCode');
+                qrContainer.innerHTML = '';
+                
+                // Create new QR code
+                new QRCode(qrContainer, {
+                    text: qrData,
+                    width: 64,
+                    height: 64,
+                    colorDark: '#1B4332',
+                    colorLight: '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.H
+                });
                 
                 // Enable download button
                 downloadBtn.disabled = false;
