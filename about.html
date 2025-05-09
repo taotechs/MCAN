@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - MCAN Lagos</title>
+    <link rel="icon" type="image/jpeg" href="static/images/mcanlogo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mcan-green': '#1B4332',
+                        'mcan-light-green': '#2D6A4F',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-mcan-green shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center space-x-3">
+                            <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="h-10 w-10 rounded-full object-cover">
+                            <span class="text-white text-xl font-bold">MCAN Lagos</span>
+                        </a>
+                    </div>
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="index.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="about.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="events.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Events</a>
+                        <a href="news.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">News</a>
+                        <a href="projects.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <div class="relative dropdown">
+                            <button class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                                More
+                                <i class="fas fa-chevron-down ml-1"></i>
+                            </button>
+                            <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
+                                <div class="py-1">
+                                    <a href="executives.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Executives</a>
+                                    <a href="teams.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Teams</a>
+                                    <a href="lodges.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lodges</a>
+                                    <a href="gallery.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Gallery</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-white hover:text-green-100 hover:bg-mcan-light-green focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Auth Buttons -->
+                <div class="hidden md:flex items-center">
+                    <div class="flex items-center space-x-4">
+                        <a href="login.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                        <a href="register.html" class="bg-white text-mcan-green hover:bg-green-50 px-4 py-2 rounded-md text-sm font-medium">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="about.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="events.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Events</a>
+                <a href="news.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">News</a>
+                <a href="projects.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="executives.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Executives</a>
+                <a href="teams.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Teams</a>
+                <a href="lodges.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Lodges</a>
+                <a href="gallery.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="login.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Login</a>
+                <a href="register.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <div class="relative bg-mcan-green">
+            <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+                        About MCAN
+                    </h1>
+                    <p class="mt-6 max-w-2xl mx-auto text-xl text-green-100">
+                        Learn more about our mission, vision, and the impact we make in the community.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Content -->
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <!-- About MCAN Section -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">About MCAN</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
+                    <p class="text-gray-600">
+                        MCAN is the acronym for the <strong>Muslim Corpers' Association of Nigeria</strong>, a national body that has fostered a strong network of Muslim youth corps members across Nigeria for over three decades. It was established during the 1978/1979 service year and is officially registered with the Corporate Affairs Commission (CAC) since 1994.
+                    </p>
+                    <p class="text-gray-600">
+                        The association was born out of the need for Muslim corps members—deployed through the NYSC scheme (established by Decree No. 24 of 1973)—to have a unified platform for spiritual growth, Islamic coordination, and community service during their service year outside their state of origin. MCAN's national headquarters is located in Mabushi, Abuja, with branches in all 36 states and the FCT.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mission, Vision, and Slogan -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-mcan-green mb-3">🕋 Mission</h3>
+                    <p class="text-gray-600">Adherence to the pristine teachings of Islam in all affairs of life.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-mcan-green mb-3">🌍 Vision</h3>
+                    <p class="text-gray-600">Towards achieving an ideal, morally bounded Islamic society.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-mcan-green mb-3">📢 Slogan</h3>
+                    <p class="text-gray-600">Serving Islam (Allah) through the Nation.</p>
+                </div>
+            </div>
+
+            <!-- Aims and Objectives -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Aims and Objectives of MCAN</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <ol class="list-decimal list-inside space-y-3 text-gray-600">
+                        <li>To serve as a coordinating body and forum for the exchange of ideas among Muslim corps members nationwide.</li>
+                        <li>To protect the legitimate rights and interests of Muslim corps members across Nigeria.</li>
+                        <li>To promote the correct understanding of Islam among corps members, students, and the broader public.</li>
+                        <li>To coordinate efforts with Islamic organizations in propagating Islam across Nigeria and beyond.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Programmes -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Programmes of MCAN</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
+                    <p class="text-gray-600">MCAN's activities are structured to align with the NYSC calendar, allowing members to fully engage in national service while contributing to Islamic growth and societal development.</p>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-mcan-green mb-3">1. Pre-Orientation Programmes</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                <li>Organized in collaboration with the MSSN in higher institutions nationwide.</li>
+                                <li>Includes seminars and the distribution of pamphlets to sensitize prospective corps members.</li>
+                                <li>Begins about 2–3 months before NYSC orientation camp opens.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold text-mcan-green mb-3">2. Orientation Camp Programmes</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                <li>MCAN lectures and Da'wah sessions for corps members.</li>
+                                <li>Islamic posters, welcome banners, and mosque activity boards.</li>
+                                <li>Structured mosque-based teaching on Aqeedah, Ibaadah, and Mu'amalat.</li>
+                                <li>Qur'an memorization exercises.</li>
+                                <li>Humanitarian camp projects (e.g., drainage or bridge repairs).</li>
+                                <li>Islamic video shows and interfaith outreach efforts.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold text-mcan-green mb-3">3. Post-Orientation Programmes</h3>
+                            
+                            <div class="ml-4 space-y-4">
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900 mb-2">Educational/Da'wah Programmes:</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                        <li>Weekly Al-Usrah gatherings.</li>
+                                        <li>Arabic and Qur'anic classes.</li>
+                                        <li>Village Da'wah weekends.</li>
+                                        <li>TV/radio programs in over 16 states.</li>
+                                        <li>Monthly bulletins and leadership seminars (e.g., on Nikkah).</li>
+                                        <li>Islamic reverts' classes.</li>
+                                        <li>Free tutorials in secondary schools in over 12 states.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900 mb-2">Visitation Programmes:</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                        <li>Regular Jum'ah services and lectures in prisons.</li>
+                                        <li>Bi-annual visits to motherless babies' homes.</li>
+                                        <li>Other targeted visitations based on community needs.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900 mb-2">Community Development Projects:</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                        <li>Mosque and Arabic school construction and renovation.</li>
+                                        <li>Islamic book centres and video clubs in 20+ states.</li>
+                                        <li>Largest Islamic book centre located at National Headquarters Mosque, Abuja.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div class="mt-16 animate-on-scroll">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Core Values</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-heart text-4xl text-mcan-green mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Compassion</h3>
+                        <p class="text-gray-600">
+                            We show empathy and care for all members of our community, supporting them in their spiritual and professional journey.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-book text-4xl text-mcan-green mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Knowledge</h3>
+                        <p class="text-gray-600">
+                            We promote continuous learning and understanding of Islamic principles and modern knowledge.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-hands-helping text-4xl text-mcan-green mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Service</h3>
+                        <p class="text-gray-600">
+                            We are committed to serving our community and contributing positively to society through various initiatives.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="bg-mcan-green text-white p-3 rounded-full shadow-lg hover:bg-mcan-light-green transition-colors duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="h-12 w-12 rounded-full object-cover">
+                        <h3 class="text-lg font-semibold">MCAN Lagos</h3>
+                    </div>
+                    <p class="text-gray-400">Empowering corps members in Lagos State through community service and professional development.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-white">Projects</a></li>
+                        <li><a href="executives.html" class="text-gray-400 hover:text-white">Executives</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="lodges.html" class="text-gray-400 hover:text-white">Lodges</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i> info@mcanlagos.org</li>
+                        <li><i class="fas fa-phone mr-2"></i> +234 123 456 7890</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2025 MCAN Lagos. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html> 

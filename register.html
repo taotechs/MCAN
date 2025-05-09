@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - MCAN Lagos</title>
+    <link rel="icon" type="image/jpeg" href="static/images/mcanlogo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mcan-green': '#1B4332',
+                        'mcan-light-green': '#2D6A4F',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-mcan-green shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center space-x-3">
+                            <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="h-10 w-10 rounded-full object-cover">
+                            <span class="text-white text-xl font-bold">MCAN Lagos</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="px-6 py-8">
+                <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">Create an Account</h2>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstname" class="block text-sm font-medium text-gray-700">First name</label>
+                            <input type="text" id="firstname" name="firstname" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                        </div>
+                        <div>
+                            <label for="lastname" class="block text-sm font-medium text-gray-700">Last name</label>
+                            <input type="text" id="lastname" name="lastname" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms" name="terms" required class="h-4 w-4 text-mcan-green focus:ring-mcan-green border-gray-300 rounded">
+                        <label for="terms" class="ml-2 block text-sm text-gray-900">
+                            I agree to the <a href="#" class="text-mcan-green hover:text-mcan-light-green">Terms and Conditions</a>
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-mcan-green hover:bg-mcan-light-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mcan-green">
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">
+                        Already have an account?
+                        <a href="login.html" class="font-medium text-mcan-green hover:text-mcan-light-green">
+                            Sign in here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2025 MCAN Lagos. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html> 
