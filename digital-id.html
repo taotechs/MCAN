@@ -140,53 +140,53 @@
                         <div class="relative p-3 flex flex-col h-full">
                             <!-- Header -->
                             <div class="text-center mb-1 pr-16 pl-16">
-                                <h1 class="text-sm font-bold text-mcan-green">Muslim Corpers' Association of Nigeria (MCAN)</h1>
-                                <h2 class="text-xs text-white bg-red-600 py-0.5 px-2 rounded inline-block mt-0.5">Lagos Membership Digital Identity Card</h2>
+                                <h1 class="text-xs font-bold text-mcan-green">Muslim Corpers' Association of Nigeria (MCAN)</h1>
+                                <h2 class="text-[10px] text-white bg-red-600 py-0.5 px-2 rounded inline-block mt-0.5">Lagos Membership Digital Identity Card</h2>
                             </div>
 
                             <!-- NYSC Logo -->
                             <div class="absolute top-2 left-2">
-                                <img src="static/images/nysc.png" alt="NYSC Logo" class="w-10 h-10 object-contain">
+                                <img src="static/images/nysc.png" alt="NYSC Logo" class="w-8 h-8 object-contain">
                             </div>
 
                             <!-- MCAN Logo -->
                             <div class="absolute top-2 right-2">
-                                <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="w-10 h-10 rounded-full object-cover">
+                                <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="w-8 h-8 rounded-full object-cover">
                             </div>
 
                             <!-- Photo and Details -->
                             <div class="flex-1 flex items-center space-x-3 mt-1">
                                 <!-- Photo -->
-                                <div class="w-20 h-28 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                                <div class="w-16 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                                     <img id="previewImage" src="static/images/mcanlogo.jpg" alt="ID Photo" class="w-full h-full object-cover">
                                 </div>
 
                                 <!-- Details -->
                                 <div class="flex-1 space-y-0.5">
                                     <div>
-                                        <p class="text-xs text-gray-500">Full Name</p>
-                                        <p id="previewName" class="text-sm font-semibold text-gray-900">Your Name</p>
+                                        <p class="text-[10px] text-gray-500">Full Name</p>
+                                        <p id="previewName" class="text-xs font-semibold text-gray-900">Your Name</p>
                                     </div>
                                     <div>
-                                        <p class="text-xs text-gray-500">State Code</p>
-                                        <p id="previewStateCode" class="text-sm text-gray-900">State Code</p>
+                                        <p class="text-[10px] text-gray-500">State Code</p>
+                                        <p id="previewStateCode" class="text-xs text-gray-900">State Code</p>
                                     </div>
                                     <div>
-                                        <p class="text-xs text-gray-500">State Branch</p>
-                                        <p class="text-sm text-gray-900">Lagos</p>
+                                        <p class="text-[10px] text-gray-500">State Branch</p>
+                                        <p class="text-xs text-gray-900">Lagos</p>
                                     </div>
                                     <div>
-                                        <p class="text-xs text-gray-500">Post Held</p>
-                                        <p id="previewPost" class="text-sm text-gray-900">Post</p>
+                                        <p class="text-[10px] text-gray-500">Post Held</p>
+                                        <p id="previewPost" class="text-xs text-gray-900">Post</p>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Footer -->
                             <div class="mt-1 pt-1 border-t border-gray-200 text-center">
-                                <p class="text-xs text-gray-500">This is an official digital identity card of MCAN Lagos</p>
+                                <p class="text-[10px] text-gray-500">This is an official digital identity card of MCAN Lagos</p>
                                 <!-- QR Code -->
-                                <div id="qrCode" class="absolute bottom-2 right-2 w-16 h-16"></div>
+                                <div id="qrCode" class="absolute bottom-2 right-2 w-12 h-12"></div>
                             </div>
                         </div>
                     </div>
@@ -349,14 +349,14 @@
                     const stateCodeElement = previewClone.querySelector('.text-lg');
                     const postElement = previewClone.querySelector('.text-base');
                     
-                    if (nameElement) nameElement.style.fontSize = '16px';
-                    if (stateCodeElement) stateCodeElement.style.fontSize = '14px';
-                    if (postElement) postElement.style.fontSize = '12px';
+                    if (nameElement) nameElement.style.fontSize = '12px';
+                    if (stateCodeElement) stateCodeElement.style.fontSize = '11px';
+                    if (postElement) postElement.style.fontSize = '10px';
                     
                     // Adjust photo size
                     const photoElement = previewClone.querySelector('img');
                     if (photoElement) {
-                        photoElement.style.width = '80px';
+                        photoElement.style.width = '64px';
                         photoElement.style.height = '80px';
                         photoElement.style.objectFit = 'cover';
                     }
@@ -364,8 +364,8 @@
                     // Adjust QR code size
                     const qrElement = previewClone.querySelector('#qrCode');
                     if (qrElement) {
-                        qrElement.style.width = '48px';
-                        qrElement.style.height = '48px';
+                        qrElement.style.width = '40px';
+                        qrElement.style.height = '40px';
                     }
                     
                     tempContainer.appendChild(previewClone);
