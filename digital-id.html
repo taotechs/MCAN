@@ -311,97 +311,92 @@
                     // Get the preview element
                     const idPreview = document.getElementById('idPreview');
                     
-                    // Create a temporary div with exact ID card dimensions
-                    const tempDiv = document.createElement('div');
-                    tempDiv.style.width = '85.6mm';  // Standard ID card width
-                    tempDiv.style.height = '53.98mm'; // Standard ID card height
-                    tempDiv.style.backgroundColor = '#ffffff';
-                    tempDiv.style.position = 'relative';
-                    tempDiv.style.padding = '3mm';
-                    tempDiv.style.fontFamily = 'Inter, Arial, sans-serif';
-                    tempDiv.style.transform = 'none';
-                    tempDiv.style.boxSizing = 'border-box';
-                    document.body.appendChild(tempDiv);
-
-                    // Clone the preview content
+                    // ID Card dimensions in mm
+                    const cardWidth = 85.6;  // Standard ID card width
+                    const cardHeight = 53.98; // Standard ID card height
+                    const padding = 3;        // 3mm padding
+                    const scale = 2;          // 2x scale for high resolution
+                    
+                    // Convert mm to pixels (1mm = 3.7795275591 pixels at 96 DPI)
+                    const mmToPx = 3.7795275591;
+                    const width = cardWidth * mmToPx * scale;
+                    const height = cardHeight * mmToPx * scale;
+                    const paddingPx = padding * mmToPx * scale;
+                    
+                    // Create temporary container with exact dimensions
+                    const tempContainer = document.createElement('div');
+                    tempContainer.style.width = `${width}px`;
+                    tempContainer.style.height = `${height}px`;
+                    tempContainer.style.padding = `${paddingPx}px`;
+                    tempContainer.style.backgroundColor = 'white';
+                    tempContainer.style.position = 'absolute';
+                    tempContainer.style.left = '-9999px';
+                    tempContainer.style.top = '-9999px';
+                    tempContainer.style.boxSizing = 'border-box';
+                    tempContainer.style.transform = 'none';
+                    tempContainer.style.transformOrigin = 'top left';
+                    
+                    // Clone the preview with all styles
                     const previewClone = idPreview.cloneNode(true);
                     previewClone.style.width = '100%';
                     previewClone.style.height = '100%';
                     previewClone.style.transform = 'none';
-                    previewClone.style.position = 'relative';
-                    previewClone.style.margin = '0';
-                    previewClone.style.padding = '0';
+                    previewClone.style.transformOrigin = 'top left';
+                    previewClone.style.boxSizing = 'border-box';
+                    
+                    // Adjust text sizes for the clone
+                    const nameElement = previewClone.querySelector('.text-xl');
+                    const stateCodeElement = previewClone.querySelector('.text-lg');
+                    const postElement = previewClone.querySelector('.text-base');
+                    
+                    if (nameElement) nameElement.style.fontSize = '16px';
+                    if (stateCodeElement) stateCodeElement.style.fontSize = '14px';
+                    if (postElement) postElement.style.fontSize = '12px';
+                    
+                    // Adjust photo size
+                    const photoElement = previewClone.querySelector('img');
+                    if (photoElement) {
+                        photoElement.style.width = '80px';
+                        photoElement.style.height = '80px';
+                        photoElement.style.objectFit = 'cover';
+                    }
+                    
+                    // Adjust QR code size
+                    const qrElement = previewClone.querySelector('#qrCode');
+                    if (qrElement) {
+                        qrElement.style.width = '48px';
+                        qrElement.style.height = '48px';
+                    }
+                    
+                    tempContainer.appendChild(previewClone);
+                    document.body.appendChild(tempContainer);
 
-                    // Ensure all images in the clone are loaded
-                    const images = previewClone.getElementsByTagName('img');
-                    const imagePromises = Array.from(images).map(img => {
-                        return new Promise((resolve, reject) => {
-                            if (img.complete) {
-                                resolve();
-                            } else {
-                                img.onload = resolve;
-                                img.onerror = reject;
+                    // Use html2canvas to generate the image
+                    return html2canvas(tempContainer, {
+                        scale: 2, // High resolution
+                        backgroundColor: '#ffffff',
+                        logging: false,
+                        useCORS: true,
+                        allowTaint: true,
+                        imageTimeout: 0,
+                        width: 85.6 * 3.78, // Convert mm to pixels (1mm = 3.78px)
+                        height: 53.98 * 3.78,
+                        onclone: function(clonedDoc) {
+                            const clonedPreview = clonedDoc.querySelector('div');
+                            if (clonedPreview) {
+                                clonedPreview.style.transform = 'none';
+                                // Ensure all text elements maintain their size
+                                const textElements = clonedPreview.querySelectorAll('p, h1, h2, span');
+                                textElements.forEach(el => {
+                                    el.style.transform = 'none';
+                                    el.style.fontSize = window.getComputedStyle(el).fontSize;
+                                });
                             }
-                        });
+                        }
                     });
-
-                    // Wait for all images to load
-                    Promise.all(imagePromises)
-                        .then(() => {
-                            tempDiv.appendChild(previewClone);
-
-                            // Use html2canvas to generate the image
-                            return html2canvas(tempDiv, {
-                                scale: 2, // High resolution
-                                backgroundColor: '#ffffff',
-                                logging: false,
-                                useCORS: true,
-                                allowTaint: true,
-                                imageTimeout: 0,
-                                width: 85.6 * 3.78, // Convert mm to pixels (1mm = 3.78px)
-                                height: 53.98 * 3.78,
-                                onclone: function(clonedDoc) {
-                                    const clonedPreview = clonedDoc.querySelector('div');
-                                    if (clonedPreview) {
-                                        clonedPreview.style.transform = 'none';
-                                        // Ensure all text elements maintain their size
-                                        const textElements = clonedPreview.querySelectorAll('p, h1, h2, span');
-                                        textElements.forEach(el => {
-                                            el.style.transform = 'none';
-                                            el.style.fontSize = window.getComputedStyle(el).fontSize;
-                                        });
-                                    }
-                                }
-                            });
-                        })
-                        .then(canvas => {
-                            // Convert to PNG
-                            const pngData = canvas.toDataURL('image/png', 1.0);
-                            
-                            // Create download link
-                            const link = document.createElement('a');
-                            link.download = 'mcan-digital-id.png';
-                            link.href = pngData;
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
-                            
-                            // Clean up
-                            document.body.removeChild(tempDiv);
-                            
-                            // Reset button state
-                            downloadBtn.disabled = false;
-                            downloadBtn.textContent = 'Download ID Card';
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            document.body.removeChild(tempDiv);
-                            downloadBtn.disabled = false;
-                            downloadBtn.textContent = 'Download ID Card';
-                            alert('Error generating ID card: ' + error.message);
-                        });
                 } catch (error) {
                     console.error('Error:', error);
+                    document.body.removeChild(tempContainer);
                     downloadBtn.disabled = false;
                     downloadBtn.textContent = 'Download ID Card';
                     alert('Error generating ID card: ' + error.message);
