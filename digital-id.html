@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCAN Lagos Digital ID - MCAN Lagos</title>
+    <link rel="icon" type="image/jpeg" href="static/images/mcanlogo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mcan-green': '#1B4332',
+                        'mcan-light-green': '#2D6A4F',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-mcan-green shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center space-x-3">
+                            <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="h-10 w-10 rounded-full object-cover">
+                            <span class="text-white text-xl font-bold">MCAN Lagos</span>
+                        </a>
+                    </div>
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="index.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="about.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="events.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Events</a>
+                        <a href="news.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">News</a>
+                        <a href="projects.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <div class="relative dropdown">
+                            <button class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                                More
+                                <i class="fas fa-chevron-down ml-1"></i>
+                            </button>
+                            <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
+                                <div class="py-1">
+                                    <a href="executives.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Executives</a>
+                                    <a href="teams.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Teams</a>
+                                    <a href="lodges.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lodges</a>
+                                    <a href="gallery.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Gallery</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-white hover:text-green-100 hover:bg-mcan-light-green focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Auth Buttons -->
+                <div class="hidden md:flex items-center">
+                    <div class="flex items-center space-x-4">
+                        <a href="login.html" class="text-white hover:text-green-100 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                        <a href="register.html" class="bg-white text-mcan-green hover:bg-green-50 px-4 py-2 rounded-md text-sm font-medium">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="about.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="events.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Events</a>
+                <a href="news.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">News</a>
+                <a href="projects.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="executives.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Executives</a>
+                <a href="teams.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Teams</a>
+                <a href="lodges.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Lodges</a>
+                <a href="gallery.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="login.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Login</a>
+                <a href="register.html" class="text-white hover:text-green-100 block px-3 py-2 rounded-md text-base font-medium">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">MCAN Lagos Digital ID Generator</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- ID Generator Form -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <form id="idForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                        </div>
+                        <div>
+                            <label for="stateCode" class="block text-sm font-medium text-gray-700">State Code</label>
+                            <input type="text" id="stateCode" name="stateCode" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                        </div>
+                        <div>
+                            <label for="post" class="block text-sm font-medium text-gray-700">Post Held</label>
+                            <input type="text" id="post" name="post" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mcan-green focus:border-mcan-green">
+                        </div>
+                        <div>
+                            <label for="photo" class="block text-sm font-medium text-gray-700">Passport Photo</label>
+                            <input type="file" id="photo" name="photo" accept="image/*" required class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-mcan-green file:text-white hover:file:bg-mcan-light-green">
+                        </div>
+                        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-mcan-green hover:bg-mcan-light-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mcan-green">
+                            Generate ID
+                        </button>
+                    </form>
+                </div>
+
+                <!-- ID Preview -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">ID Preview</h2>
+                    <div id="idPreview" class="relative w-full aspect-[1.586] bg-white rounded-lg overflow-hidden shadow-lg">
+                        <!-- Background Watermark -->
+                        <div class="absolute inset-0 opacity-5">
+                            <img src="static/images/mcanlogo.jpg" alt="MCAN Logo Watermark" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <!-- Card Content -->
+                        <div class="relative p-3 flex flex-col h-full">
+                            <!-- Header -->
+                            <div class="text-center mb-1 pr-16 pl-16">
+                                <h1 class="text-sm font-bold text-mcan-green">Muslim Corpers' Association of Nigeria (MCAN)</h1>
+                                <h2 class="text-xs text-white bg-red-600 py-0.5 px-2 rounded inline-block mt-0.5">Lagos Membership Digital Identity Card</h2>
+                            </div>
+
+                            <!-- NYSC Logo -->
+                            <div class="absolute top-2 left-2">
+                                <img src="static/images/nysc.png" alt="NYSC Logo" class="w-10 h-10 object-contain">
+                            </div>
+
+                            <!-- MCAN Logo -->
+                            <div class="absolute top-2 right-2">
+                                <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="w-10 h-10 rounded-full object-cover">
+                            </div>
+
+                            <!-- Photo and Details -->
+                            <div class="flex-1 flex items-center space-x-3 mt-1">
+                                <!-- Photo -->
+                                <div class="w-20 h-28 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img id="previewImage" src="static/images/mcanlogo.jpg" alt="ID Photo" class="w-full h-full object-cover">
+                                </div>
+
+                                <!-- Details -->
+                                <div class="flex-1 space-y-0.5">
+                                    <div>
+                                        <p class="text-xs text-gray-500">Full Name</p>
+                                        <p id="previewName" class="text-sm font-semibold text-gray-900">Your Name</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">State Code</p>
+                                        <p id="previewStateCode" class="text-sm text-gray-900">State Code</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">State Branch</p>
+                                        <p class="text-sm text-gray-900">Lagos</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Post Held</p>
+                                        <p id="previewPost" class="text-sm text-gray-900">Post</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="mt-1 pt-1 border-t border-gray-200 text-center">
+                                <p class="text-xs text-gray-500">This is an official digital identity card of MCAN Lagos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="downloadBtn" class="mt-4 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-mcan-green hover:bg-mcan-light-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mcan-green" disabled>
+                        Download ID Card
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="static/images/mcanlogo.jpg" alt="MCAN Logo" class="h-12 w-12 rounded-full object-cover">
+                        <h3 class="text-lg font-semibold">MCAN Lagos</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Empowering corps members in Lagos State through community service and professional development.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-white">Projects</a></li>
+                        <li><a href="executives.html" class="text-gray-400 hover:text-white">Executives</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="lodges.html" class="text-gray-400 hover:text-white">Lodges</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i> info@mcanlagos.org</li>
+                        <li><i class="fas fa-phone mr-2"></i> +234 123 456 7890</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2025 MCAN Lagos. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('idForm');
+            const photoInput = document.getElementById('photo');
+            const previewImage = document.getElementById('previewImage');
+            const previewName = document.getElementById('previewName');
+            const previewStateCode = document.getElementById('previewStateCode');
+            const previewPost = document.getElementById('previewPost');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            // Handle photo upload and preview
+            photoInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Handle form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Update preview with form data
+                previewName.textContent = document.getElementById('name').value;
+                previewStateCode.textContent = document.getElementById('stateCode').value;
+                previewPost.textContent = document.getElementById('post').value;
+                
+                // Enable download button
+                downloadBtn.disabled = false;
+            });
+
+            // Handle ID download
+            downloadBtn.addEventListener('click', function() {
+                try {
+                    // Show loading state
+                    downloadBtn.disabled = true;
+                    downloadBtn.textContent = 'Generating Image...';
+
+                    // Get the preview element
+                    const idPreview = document.getElementById('idPreview');
+                    
+                    // Create a temporary div to hold the ID card content
+                    const tempDiv = document.createElement('div');
+                    tempDiv.style.width = '600px';
+                    tempDiv.style.height = '378px';
+                    tempDiv.style.backgroundColor = '#ffffff';
+                    tempDiv.style.position = 'relative';
+                    tempDiv.style.padding = '20px';
+                    tempDiv.style.fontFamily = 'Inter, Arial, sans-serif';
+                    document.body.appendChild(tempDiv);
+
+                    // Clone the preview content
+                    const previewClone = idPreview.cloneNode(true);
+                    previewClone.style.width = '100%';
+                    previewClone.style.height = '100%';
+                    previewClone.style.transform = 'none';
+
+                    // Ensure all images in the clone are loaded
+                    const images = previewClone.getElementsByTagName('img');
+                    const imagePromises = Array.from(images).map(img => {
+                        return new Promise((resolve, reject) => {
+                            if (img.complete) {
+                                resolve();
+                            } else {
+                                img.onload = resolve;
+                                img.onerror = reject;
+                            }
+                        });
+                    });
+
+                    // Wait for all images to load
+                    Promise.all(imagePromises)
+                        .then(() => {
+                            tempDiv.appendChild(previewClone);
+
+                            // Use html2canvas to generate the image
+                            return html2canvas(tempDiv, {
+                                scale: 2,
+                                backgroundColor: '#ffffff',
+                                logging: true,
+                                useCORS: true,
+                                allowTaint: true,
+                                imageTimeout: 0,
+                                onclone: function(clonedDoc) {
+                                    const clonedPreview = clonedDoc.querySelector('div');
+                                    if (clonedPreview) {
+                                        clonedPreview.style.transform = 'none';
+                                    }
+                                }
+                            });
+                        })
+                        .then(canvas => {
+                            // Convert to PNG
+                            const pngData = canvas.toDataURL('image/png');
+                            
+                            // Create download link
+                            const link = document.createElement('a');
+                            link.download = 'mcan-digital-id.png';
+                            link.href = pngData;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            
+                            // Clean up
+                            document.body.removeChild(tempDiv);
+                            
+                            // Reset button state
+                            downloadBtn.disabled = false;
+                            downloadBtn.textContent = 'Download ID Card';
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            document.body.removeChild(tempDiv);
+                            downloadBtn.disabled = false;
+                            downloadBtn.textContent = 'Download ID Card';
+                            alert('Error generating ID card: ' + error.message);
+                        });
+                } catch (error) {
+                    console.error('Error:', error);
+                    downloadBtn.disabled = false;
+                    downloadBtn.textContent = 'Download ID Card';
+                    alert('Error generating ID card: ' + error.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
