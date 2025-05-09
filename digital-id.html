@@ -281,14 +281,16 @@
                     // Get the preview element
                     const idPreview = document.getElementById('idPreview');
                     
-                    // Create a temporary div to hold the ID card content
+                    // Create a temporary div with exact ID card dimensions
                     const tempDiv = document.createElement('div');
-                    tempDiv.style.width = '600px';
-                    tempDiv.style.height = '378px';
+                    tempDiv.style.width = '85.6mm';  // Standard ID card width
+                    tempDiv.style.height = '53.98mm'; // Standard ID card height
                     tempDiv.style.backgroundColor = '#ffffff';
                     tempDiv.style.position = 'relative';
-                    tempDiv.style.padding = '20px';
+                    tempDiv.style.padding = '3mm';
                     tempDiv.style.fontFamily = 'Inter, Arial, sans-serif';
+                    tempDiv.style.transform = 'none';
+                    tempDiv.style.boxSizing = 'border-box';
                     document.body.appendChild(tempDiv);
 
                     // Clone the preview content
@@ -296,6 +298,9 @@
                     previewClone.style.width = '100%';
                     previewClone.style.height = '100%';
                     previewClone.style.transform = 'none';
+                    previewClone.style.position = 'relative';
+                    previewClone.style.margin = '0';
+                    previewClone.style.padding = '0';
 
                     // Ensure all images in the clone are loaded
                     const images = previewClone.getElementsByTagName('img');
@@ -317,23 +322,31 @@
 
                             // Use html2canvas to generate the image
                             return html2canvas(tempDiv, {
-                                scale: 2,
+                                scale: 2, // High resolution
                                 backgroundColor: '#ffffff',
-                                logging: true,
+                                logging: false,
                                 useCORS: true,
                                 allowTaint: true,
                                 imageTimeout: 0,
+                                width: 85.6 * 3.78, // Convert mm to pixels (1mm = 3.78px)
+                                height: 53.98 * 3.78,
                                 onclone: function(clonedDoc) {
                                     const clonedPreview = clonedDoc.querySelector('div');
                                     if (clonedPreview) {
                                         clonedPreview.style.transform = 'none';
+                                        // Ensure all text elements maintain their size
+                                        const textElements = clonedPreview.querySelectorAll('p, h1, h2, span');
+                                        textElements.forEach(el => {
+                                            el.style.transform = 'none';
+                                            el.style.fontSize = window.getComputedStyle(el).fontSize;
+                                        });
                                     }
                                 }
                             });
                         })
                         .then(canvas => {
                             // Convert to PNG
-                            const pngData = canvas.toDataURL('image/png');
+                            const pngData = canvas.toDataURL('image/png', 1.0);
                             
                             // Create download link
                             const link = document.createElement('a');
