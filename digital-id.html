@@ -393,6 +393,30 @@
                                 });
                             }
                         }
+                    }).then(canvas => {
+                        // Convert to PNG
+                        const pngData = canvas.toDataURL('image/png', 1.0);
+                        
+                        // Create download link
+                        const link = document.createElement('a');
+                        link.download = 'mcan-digital-id.png';
+                        link.href = pngData;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        
+                        // Clean up
+                        document.body.removeChild(tempContainer);
+                        
+                        // Reset button state
+                        downloadBtn.disabled = false;
+                        downloadBtn.textContent = 'Download ID Card';
+                    }).catch(error => {
+                        console.error('Error:', error);
+                        document.body.removeChild(tempContainer);
+                        downloadBtn.disabled = false;
+                        downloadBtn.textContent = 'Download ID Card';
+                        alert('Error generating ID card: ' + error.message);
                     });
                 } catch (error) {
                     console.error('Error:', error);
